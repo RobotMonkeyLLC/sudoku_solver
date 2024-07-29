@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+.cell {
+  height: 3.15rem;
+  width: 3.15rem;
+}
+
+@media screen and (min-width: 768px) {
+  .cell {
+    height: 5.5rem;
+    width: 5.5rem;
+  }
+  
+}
