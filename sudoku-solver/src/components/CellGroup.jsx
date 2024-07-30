@@ -7,7 +7,7 @@ export default function CellGroup({group}) {
                 <div key={i} className="row justify-content-center">
                     {
                         [...Array(3)].map((_, j) => (
-                            <Cell key={j} ind={{g: group,i:i,j:j}}></Cell>
+                            <Cell key={j} group={group} i={i} j={j}></Cell>
                         ))
                     }
                 </div>

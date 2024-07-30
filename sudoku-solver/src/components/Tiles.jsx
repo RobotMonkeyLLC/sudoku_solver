@@ -1,6 +1,6 @@
 export default function Tiles() {
     return (
-        <div className="tiles col-12 row justify-content-center">
+        <div className="tiles col-12 row justify-content-center py-2">
             {
                 [...Array(9)].map((_, i) => (
                     
