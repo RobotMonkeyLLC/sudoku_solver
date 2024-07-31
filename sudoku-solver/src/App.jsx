@@ -6,12 +6,12 @@ import SudokuContext from './SudokuContext.jsx'
 import './App.css'
 
 function App() {
-  const { selected, board, boardActions } = useContext(SudokuContext)
+  const { puzzle ,selected, setSelected, board, boardActions } = useContext(SudokuContext)
 
   return (
     <div className='d-flex flex-wrap justify-content-center'>
-      <Header></Header>
-      <Tiles boardActions={boardActions} selected={selected}></Tiles>
+      <Header boardActions={boardActions} puzzle={puzzle}></Header>
+      <Tiles boardActions={boardActions} selected={selected} setSelected={setSelected}></Tiles>
       <Board board={board}></Board>
     </div>
   )

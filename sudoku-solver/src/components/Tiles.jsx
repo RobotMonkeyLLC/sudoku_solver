@@ -1,16 +1,19 @@
-export default function Tiles({boardActions, selected}) {
+export default function Tiles({ boardActions, selected, setSelected }) {
     const handleClick = (num) => {
+        if (selected === null) return;
         boardActions({type: 'UPDATE_BOARD', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});
+        setSelected(null);
     }
+    
     return (
-        <div className="tiles col-12 row justify-content-center py-2">
+        <div className="col-9 btn-group tiles row justify-content-center py-2" role='group'>
             {
                 [...Array(9)].map((_, i) => (
                     
-                        <div key={i} className="tile col-1 bg-primary border"
+                        <button key={i} className="col-1 btn btn-primary border fs-3"
                             onClick={() => handleClick(i+1)}>
                             {i + 1}
-                        </div>
+                        </button>
                     
                 ))
             }
