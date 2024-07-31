@@ -16,18 +16,19 @@ const TaskReducer = (state, action) => {
     }
 }
 
-const puzzle = getPuzzle();
+const choosePuzzle = getPuzzle();
 
 export function SudokuProvider({children}) {
-    const [board, boardActions] = useReducer(TaskReducer, Array(9).fill(Array(3).fill(Array(3).fill(0))));
-    const [selected, setSelected] = useState({g: 0, i: 0, j: 0});
+    const [board, boardActions] = useReducer(TaskReducer, choosePuzzle);
+    const [selected, setSelected] = useState(null);
+    const [puzzle, setPuzzle] = useState(board);
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: puzzle});
     }, []);
 
     return (
-        <SudokuContext.Provider value={{selected, setSelected, board, boardActions}}>
+        <SudokuContext.Provider value={{puzzle, setPuzzle ,selected, setSelected, board, boardActions}}>
             {children}
         </SudokuContext.Provider>    )
 }

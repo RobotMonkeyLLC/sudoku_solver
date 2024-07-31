@@ -13,8 +13,8 @@ const getPuzzle = () => {
             [[0,0,0],[0,0,0],[0,0,8]]]);
 }
 
-const toggleClass = (target, add = 'bg-primary', sub = 'bg-secondary') => {
-    [...document.getElementsByClassName('cell')].map((cell) => {
+const toggleClass = (target, cls = 'cell', add = 'bg-primary', sub = 'bg-secondary') => {
+    [...document.getElementsByClassName(cls)].map((cell) => {
         cell.classList.remove(add);
         cell.classList.add(sub);
     });

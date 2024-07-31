@@ -3,17 +3,19 @@ import SudokuContext from '../SudokuContext.jsx';
 import { toggleClass } from "./functions.jsx";
 
 export default function Cell({value, coor}) {
-    const {selected, setSelected} = useContext(SudokuContext);
+    const {puzzle, selected, setSelected} = useContext(SudokuContext);
     
-    const handleClick = (target, value) => {
+    const handleClick = (target) => {
+        const {g, i, j} = coor;
+        if (puzzle[g][i][j] !== 0) return;
         toggleClass(target);
-        setSelected({g: coor.g, i: coor.i, j: coor.j, value: value});
+        setSelected({...coor});
 
     }
 
     return (
         <div className="cell bg-secondary justify-content-center border border-black fs-3 align-content-center" 
-        onClick={(e) => handleClick(e.target, value)}>
+        onClick={(e) => handleClick(e.target)}>
             {value === 0 ? '' : value}
         </div>
     )
