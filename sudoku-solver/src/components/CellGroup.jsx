@@ -1,13 +1,13 @@
 import Cell from "../components/Cell.jsx";
 
-export default function CellGroup({group}) {
+export default function CellGroup({group, g}) {
     return (
         
-            group.map((_, i) => (
+            group.map((x, i) => (
                 <div key={i} className="row justify-content-center">
                     {
-                        _.map((_, j) => (
-                            <Cell key={j} value={_}></Cell>
+                        x.map((y, j) => (
+                            <Cell key={j} value={y} coor={{g:g, i:i, j:j}}></Cell>
                         ))
                     }
                 </div>

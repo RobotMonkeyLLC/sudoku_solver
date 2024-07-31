@@ -53,11 +53,3 @@
   }
   
 }
-
-@media screen and (min-width: 576px) {
-  .cell {
-    height: 4.5rem;
-    width: 4.5rem;
-  }
-  
-}

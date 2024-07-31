@@ -1,4 +1,4 @@
-const getPuzzle =  () => {
+const getPuzzle = () => {
     /* const response = await fetch('');
     const data = await response.json();
     return data.newboard.grids; */
@@ -13,4 +13,13 @@ const getPuzzle =  () => {
             [[0,0,0],[0,0,0],[0,0,8]]]);
 }
 
-export { getPuzzle }
+const toggleClass = (target, add = 'bg-primary', sub = 'bg-secondary') => {
+    [...document.getElementsByClassName('cell')].map((cell) => {
+        cell.classList.remove(add);
+        cell.classList.add(sub);
+    });
+    target.classList.toggle(sub);
+    target.classList.toggle(add);
+    console.log(target);
+}
+export { getPuzzle, toggleClass }
