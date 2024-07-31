@@ -1,14 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import SudokuContext from '../SudokuContext.jsx';
 
-export default function Cell({group, i, j}) {
+export default function Cell({value}) {
     const {board, boardActions} = useContext(SudokuContext);
-    //let value = board[ind.g][ind.i][ind.j];
+    
+    const handleClick = (target) => {
+        console.log(target);
+    }
 
     return (
         <div className="cell bg-secondary justify-content-center border border-black" 
-        onClick={() => console.log(board[group][i][j])}>
-            {board != undefined ? board[group][i][j] : 0}
+        onClick={(e) => handleClick(e.target)}>
+            {value === 0 ? '' : value}
         </div>
     )
 }

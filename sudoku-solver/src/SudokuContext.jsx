@@ -25,7 +25,7 @@ const TaskReducer = (state, action) => {
 const puzzle = getPuzzle();
 
 export function SudokuProvider({children}) {
-    const [board, boardActions] = useReducer(TaskReducer, []);
+    const [board, boardActions] = useReducer(TaskReducer, Array(9).fill(Array(3).fill(Array(3).fill(0))));
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: puzzle});
