@@ -1,4 +1,9 @@
-export default function Tiles({ boardActions, selected, setSelected }) {
+import React, { useContext } from 'react';
+import SudokuContext from '../SudokuContext.jsx';
+
+export default function Tiles() {
+    const { selected, setSelected, boardActions } = useContext(SudokuContext);
+
     const handleClick = (num) => {
         if (selected === null) return;
         boardActions({type: 'UPDATE_BOARD', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});

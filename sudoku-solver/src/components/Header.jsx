@@ -1,7 +1,11 @@
 import React from 'react';
 import Guides from './Guides.jsx';
+import { useContext } from 'react';
+import SudokuContext from '../SudokuContext.jsx';
 
-export default function Header({ boardActions, puzzle }) {
+export default function Header() {
+    const { takingNotes, setTakingNotes, boardActions} = useContext(SudokuContext);
+
     return (
         <header className="col-12">
             <div className="row justify-content-evenly">
@@ -12,7 +16,8 @@ export default function Header({ boardActions, puzzle }) {
                     <Guides></Guides>
                 </div>
                 
-                <button className="btn btn-h btn-secondary bi bi-pencil"></button>
+                <button className={`btn btn-h ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-pencil`}
+                onClick={() => setTakingNotes(!takingNotes)}></button>
             </div>
         </header>
     )

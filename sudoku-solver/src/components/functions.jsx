@@ -18,9 +18,17 @@ const getPuzzle = () => {
     return(newboard.grids);
 }
 
+const emptyNotes = () => {
+    return Array(9)
+        .fill(Array(3)
+            .fill(Array(3)
+                .fill(Array(9).fill(0).map((x,i) => [i+1]))));
+
+}
+
 const toggleClass = (cls, remove, add) => {
     [...document.getElementsByClassName(cls)].map((cell) => {
         cell.classList.replace(remove, add);
     });
 }
-export { getPuzzle, toggleClass }
+export { getPuzzle, toggleClass, emptyNotes };

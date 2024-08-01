@@ -1,27 +1,28 @@
 import { useContext } from "react";
 import SudokuContext from '../SudokuContext.jsx';
-import { toggleClass } from "./functions.jsx";
+import CellGroup from "./CellGroup.jsx";
 
 export default function Cell({value, coor}) {
-    const { puzzle, selected, setSelected } = useContext(SudokuContext);
+    const { takingNotes, notes, puzzle, selected, setSelected } = useContext(SudokuContext);
     const {g, i, j} = coor;
 
-    const handleClick = (target) => {
-        
+    const handleClick = () => {
         if (puzzle[g][i][j] !== 0) return;
-        /* toggleClass('cell','bg-dark-subtle','bg-white');
-        target.classList.replace('bg-white', 'bg-dark-subtle'); */
         setSelected({...coor});
     }
+
     const baseClass = 'cell d-flex justify-content-center border border-black align-items-center ';
-    const valueClass = (puzzle[coor.g][coor.i][coor.j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
+    const isPuzzle = puzzle[g][i][j] !== 0;
+    //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
+    const puzzleClass = isPuzzle ? 'fs-1 text-dark-emphasis fw-bold' : 'cursor-pointer fs-2';
     const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
     const selectedClass = isSelected ? 'bg-dark-subtle':'bg-white'
     
     return (
-        <div className={baseClass+ valueClass + ' ' + selectedClass}
-        onClick={(e) => handleClick(e.target)}>
-            {value === 0 ? '' : value}
+        <div className={baseClass + puzzleClass + ' ' + selectedClass}
+        onClick={() => handleClick()}>
+            {(takingNotes && !isPuzzle && <CellGroup group={notes[g][i]} g={g}></CellGroup>) ||
+            (value === 0 ? '' : value)}
         </div>
     )
 }

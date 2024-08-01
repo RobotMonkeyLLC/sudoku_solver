@@ -1,9 +1,9 @@
 import { createContext, useReducer, useEffect, useState } from 'react';
-import { getPuzzle } from './components/functions.jsx';
+import { getPuzzle, emptyNotes } from './components/functions.jsx';
 
 const SudokuContext = createContext(null);
 
-const TaskReducer = (state, action) => {
+const boardReducer = (state, action) => {
     let newState, g, i, j, value;
     switch(action.type) {
         case 'RESET_BOARD':
@@ -18,19 +18,24 @@ const TaskReducer = (state, action) => {
     }
 }
 
-const choosePuzzle = getPuzzle().slice();
 
 export function SudokuProvider({children}) {
-    const [board, boardActions] = useReducer(TaskReducer, getPuzzle());
+    const [board, boardActions] = useReducer(boardReducer, getPuzzle());
+    const [notes, noteActions] = useReducer(boardReducer, emptyNotes());
     const [selected, setSelected] = useState(null);
+    const [takingNotes, setTakingNotes] = useState(false);
     const [puzzle, setPuzzle] = useState(getPuzzle());
 
     useEffect(() => {
-        boardActions({type: 'SET_BOARD', payload: choosePuzzle});
+        boardActions({type: 'SET_BOARD', payload: getPuzzle()});
     }, []);
 
     return (
-        <SudokuContext.Provider value={{puzzle, setPuzzle ,selected, setSelected, board, boardActions}}>
+        <SudokuContext.Provider value={{puzzle, setPuzzle ,
+                                        selected, setSelected, 
+                                        board, boardActions,
+                                        notes, noteActions,
+                                        takingNotes, setTakingNotes}}>
             {children}
         </SudokuContext.Provider>
         )
