@@ -22,7 +22,8 @@ const emptyNotes = () => {
     return Array(9)
         .fill(Array(3)
             .fill(Array(3)
-                .fill(Array(9).fill(0).map((x,i) => [i+1]))));
+                .fill(Array(3)
+                    .fill(Array(9).fill(0)))));
 
 }
 
