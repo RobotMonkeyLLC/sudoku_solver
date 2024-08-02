@@ -5,18 +5,18 @@ const SudokuContext = createContext(null);
 
 const boardReducer = (state, action) => {
     let newState, g, i, j, value;
-    ({g, i, j, value} = action.payload);
+    action.payload && ({g, i, j, value} = action.payload);
     switch(action.type) {
         case 'RESET_BOARD':
             return getPuzzle();
         case 'SET_BOARD':
             return action.payload;
         case 'UPDATE_BOARD':
-            newState = [...state];
+            newState = structuredClone(state);
             newState[g][i][j] = value;
             return newState;
         case 'UPDATE_NOTE':
-            newState = [...state];
+            newState = structuredClone(state);
             newState[g][i][j][value-1] = true//!(newState[g][i][j][value-1]);
             return newState;
     }

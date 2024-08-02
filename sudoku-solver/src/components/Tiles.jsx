@@ -20,8 +20,7 @@ export default function Tiles() {
 
     const isNote = (i) => (takingNotes && (selected !== null))
                         ? "btn-" + (notes[selected.g][selected.i][selected.j][i] ? 'dark' : 'outline') 
-                        : 'btn-primary'
-    
+                        : 'btn-primary';
     return (
         <div className="col-9 btn-group tiles row justify-content-center py-2" role='group'>
             {
