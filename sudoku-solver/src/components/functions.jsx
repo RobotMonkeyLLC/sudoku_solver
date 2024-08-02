@@ -22,8 +22,7 @@ const emptyNotes = () => {
     return Array(9)
         .fill(Array(3)
             .fill(Array(3)
-                .fill(Array(3)
-                    .fill(Array(9).fill(0)))));
+                    .fill(Array(9).fill(false))));
 
 }
 

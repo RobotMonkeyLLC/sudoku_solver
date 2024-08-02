@@ -2,12 +2,20 @@ import React, { useContext } from 'react';
 import SudokuContext from '../SudokuContext.jsx';
 
 export default function Tiles() {
-    const { selected, setSelected, boardActions } = useContext(SudokuContext);
+    const { takingNotes, noteActions, selected, setSelected, boardActions } = useContext(SudokuContext);
 
     const handleClick = (num) => {
         if (selected === null) return;
-        boardActions({type: 'UPDATE_BOARD', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});
-        setSelected(null);
+
+        switch(takingNotes) {
+            case true:
+                noteActions({type: 'UPDATE_NOTE', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});
+                return;
+            case false:
+                boardActions({type: 'UPDATE_BOARD', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});
+                setSelected(null);
+                return;
+        }
     }
     
     return (

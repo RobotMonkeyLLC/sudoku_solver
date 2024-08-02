@@ -2,7 +2,7 @@ import { useContext } from "react";
 import SudokuContext from '../SudokuContext.jsx';
 import CellGroup from "./CellGroup.jsx";
 
-export default function Cell({value, coor}) {
+export default function Cell({value, coor, shouldStop = false}) {
     const { takingNotes, notes, puzzle, selected, setSelected } = useContext(SudokuContext);
     const {g, i, j} = coor;
 
@@ -21,7 +21,7 @@ export default function Cell({value, coor}) {
     return (
         <div className={baseClass + puzzleClass + ' ' + selectedClass}
         onClick={() => handleClick()}>
-            {(takingNotes && !isPuzzle && <CellGroup group={notes[g][i]} g={g}></CellGroup>) ||
+            {(takingNotes && !isPuzzle && shouldStop && <CellGroup group={notes[g][i][j]} g={g} shouldStop={true}></CellGroup>) ||
             (value === 0 ? '' : value)}
         </div>
     )

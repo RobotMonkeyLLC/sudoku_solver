@@ -5,15 +5,19 @@ const SudokuContext = createContext(null);
 
 const boardReducer = (state, action) => {
     let newState, g, i, j, value;
+    ({g, i, j, value} = action.payload);
     switch(action.type) {
         case 'RESET_BOARD':
             return getPuzzle();
         case 'SET_BOARD':
             return action.payload;
         case 'UPDATE_BOARD':
-            ({g, i, j, value} = action.payload);
             newState = [...state];
             newState[g][i][j] = value;
+            return newState;
+        case 'UPDATE_NOTE':
+            newState = [...state];
+            newState[g][i][j][value-1] = true//!(newState[g][i][j][value-1]);
             return newState;
     }
 }
@@ -28,6 +32,7 @@ export function SudokuProvider({children}) {
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: getPuzzle()});
+        noteActions({type: 'SET_BOARD', payload: emptyNotes()});
     }, []);
 
     return (
