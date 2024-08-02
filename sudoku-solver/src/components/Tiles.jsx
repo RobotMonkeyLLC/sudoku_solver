@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import SudokuContext from '../SudokuContext.jsx';
 
 export default function Tiles() {
-    const { takingNotes, noteActions, selected, setSelected, boardActions } = useContext(SudokuContext);
+    const { notes, takingNotes, noteActions, selected, setSelected, boardActions } = useContext(SudokuContext);
 
     const handleClick = (num) => {
         if (selected === null) return;
@@ -17,13 +17,17 @@ export default function Tiles() {
                 return;
         }
     }
+
+    const isNote = (i) => (takingNotes && (selected !== null))
+                        ? "btn-" + (notes[selected.g][selected.i][selected.j][i] ? 'dark' : 'outline') 
+                        : 'btn-primary'
     
     return (
         <div className="col-9 btn-group tiles row justify-content-center py-2" role='group'>
             {
                 [...Array(9)].map((_, i) => (
                     
-                        <button key={i} className="col-1 btn btn-primary border fs-3"
+                        <button key={i} className={`col-1 btn ${isNote(i)} border fs-3`}
                             onClick={() => handleClick(i+1)}>
                             {i + 1}
                         </button>
