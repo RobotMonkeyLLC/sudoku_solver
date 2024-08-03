@@ -10,14 +10,15 @@ export default function Cell({value, coor, shouldStop = false}) {
         if (puzzle[g][i][j] !== 0) return;
         setSelected({...coor});
     }
-
-    const baseClass = 'cell d-flex justify-content-center border border-black align-items-center ';
-    const isPuzzle = puzzle[g][i][j] !== 0;
-    //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
-    const puzzleClass = isPuzzle ? 'fs-1 text-dark-emphasis fw-bold' : 'cursor-pointer fs-2';
-    const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
-    const selectedClass = isSelected ? 'bg-dark-subtle':'bg-white'
     
+    const isNote = (j === false) && (takingNotes);
+    const isPuzzle = (j !== false) && (puzzle[g][i][j] !== 0); // needs rework
+    const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
+    //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
+    const noteClass = isNote ? ' note-cell ' : false;
+    const baseClass = `${noteClass || 'cell d-flex flex-wrap'} p-0 border border-black align-items-center `;
+    const puzzleClass = isPuzzle ? ' fs-1 text-dark-emphasis fw-bold ' : ' cursor-pointer fs-2 ';
+    const selectedClass = isSelected ? ' bg-dark-subtle ':' bg-white '
 
     return (
         <div className={baseClass + puzzleClass + ' ' + selectedClass}

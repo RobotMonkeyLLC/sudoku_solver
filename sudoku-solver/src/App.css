@@ -42,8 +42,12 @@
 }
 
 .cell {
-  height: 3.15rem;
-  width: 3.15rem;
+  height: 80px;
+  width: 80px;
+}
+.note-cell {
+  height: 25px;
+  width: 25px;
 }
 
 .btn-h {
@@ -52,8 +56,8 @@
 }
 @media screen and (min-width: 768px) {
   .cell {
-    height: 5.5rem;
-    width: 5.5rem;
+    height: 80px;
+    width: 80px;
   }
   
 }
