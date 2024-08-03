@@ -11,7 +11,7 @@ export default function Board() {
             {
                 board.map((group, g) => (
                     <div key={g} className="col-4 d-flex flex-wrap justify-content-center px-0 my-1">
-                        <CellGroup group={group} g={g}></CellGroup>
+                        <CellGroup group={group} g={g} shouldStop={false}></CellGroup>
                     </div>
                 ))
             }
