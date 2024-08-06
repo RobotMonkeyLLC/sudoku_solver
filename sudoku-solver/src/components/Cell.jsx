@@ -8,6 +8,10 @@ export default function Cell({value, coor, shouldStop = false}) {
 
     const handleClick = () => {
         if (puzzle[g][i] && puzzle[g][i][j] !== 0) return;
+        if (puzzle[g][i] && takingNotes) {
+            console.log('taking notes', coor);
+            return
+        };
         setSelected({...coor});
     }
     
