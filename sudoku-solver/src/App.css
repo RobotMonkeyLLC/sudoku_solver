@@ -42,12 +42,12 @@
 }
 
 .cell {
-  height: 80px;
-  width: 80px;
+  height: 35px;
+  width: 35px;
 }
 .note-cell {
-  height: 25px;
-  width: 25px;
+  height: 11px;
+  width: 11px;
 }
 
 .btn-h {
@@ -59,5 +59,8 @@
     height: 80px;
     width: 80px;
   }
-  
+  .note-cell {
+    height: 25px;
+    width: 25px;
+  }
 }
