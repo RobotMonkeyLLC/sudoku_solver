@@ -22,7 +22,7 @@ export default function Tiles() {
                         ? "btn-" + (notes[selected.g][selected.i][selected.j][i] ? 'dark' : 'outline') 
                         : 'btn-primary';
     return (
-        <div className="col-9 btn-group tiles row justify-content-center py-2" role='group'>
+        <div className="col-md-9 btn-group tiles row justify-content-center py-2" role='group'>
             {
                 [...Array(9)].map((_, i) => (
                     
