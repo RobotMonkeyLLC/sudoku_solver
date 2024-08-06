@@ -16,7 +16,7 @@ export default function Cell({value, coor, shouldStop = false}) {
     const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
     //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
     const noteClass = isNote ? ' note-cell ' : false;
-    const baseClass = `${noteClass || 'cell d-flex flex-wrap'} p-0 border border-black align-items-center `;
+    const baseClass = `${noteClass || 'cell d-flex flex-wrap'} p-0 border border-black align-items-center justify-content-center`;
     const puzzleClass = isPuzzle ? ' fs-1 text-dark-emphasis fw-bold ' : ' cursor-pointer fs-2 ';
     const selectedClass = isSelected ? ' bg-dark-subtle ':' bg-white '
 
