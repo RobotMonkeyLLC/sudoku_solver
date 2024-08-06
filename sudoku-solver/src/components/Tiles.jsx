@@ -6,10 +6,10 @@ export default function Tiles() {
 
     const handleClick = (num) => {
         if (selected === null) return;
-
         switch(takingNotes) {
             case true:
                 noteActions({type: 'UPDATE_NOTE', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});
+                //setSelected(null);
                 return;
             case false:
                 boardActions({type: 'UPDATE_BOARD', payload: {g:selected.g, i: selected.i, j: selected.j, value: num}});

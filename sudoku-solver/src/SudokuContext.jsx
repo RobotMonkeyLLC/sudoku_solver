@@ -17,7 +17,7 @@ const boardReducer = (state, action) => {
             return newState;
         case 'UPDATE_NOTE':
             newState = structuredClone(state);
-            newState[g][i][j][value-1] = true//!(newState[g][i][j][value-1]);
+            newState[g][i][j][value-1] = !(newState[g][i][j][value-1]);
             return newState;
     }
 }
