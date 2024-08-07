@@ -7,11 +7,11 @@ export default function Cell({value, coor, shouldStop = false}) {
     const {g, i, j} = coor;
 
     const handleClick = () => {
-        if (puzzle[g][i] && puzzle[g][i][j] !== 0) return;
-        /* if (puzzle[g][i] && takingNotes) {
-            console.log('taking notes', coor);
-            return
+      /*   if (takingNotes) {
+            //setSelected({...coor});
+            return;
         } */
+        if (puzzle[g][i] && puzzle[g][i][j] !== 0) return;
         setSelected({...coor});
     }
     
@@ -21,9 +21,9 @@ export default function Cell({value, coor, shouldStop = false}) {
     const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
     //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
     const noteClass = isNote ? ' note-cell ' : false;
-    const baseClass = `${noteClass || 'cell d-flex flex-wrap'} p-0 border border-black align-items-center justify-content-center`;
-    const puzzleClass = isPuzzle ? ' fs-1 text-dark-emphasis fw-bold ' : ' cursor-pointer fs-2 ';
-    const selectedClass = isSelected ? ` bg-dark opacity-${isNote ? 50 : 25} `:` bg-white bg-opacity-${isNoteTrue ? 50 : 25} `;
+    const baseClass = `${noteClass || 'cell '} d-flex flex-wrap p-0 border border-black align-content-center justify-content-center`;
+    const puzzleClass = isPuzzle ? ' fs-1 text-dark-emphasis fw-bold ' : ` cursor-pointer fs-${isNote ? 4 : 2} `;
+    const selectedClass = isSelected ? ` bg-dark opacity-${isNote ? 50 : 25} `:` bg-white bg-opacity-${50} `;
 
     return (
         <div className={baseClass + puzzleClass + ' ' + selectedClass}

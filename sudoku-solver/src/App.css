@@ -44,10 +44,12 @@
 .cell {
   height: 35px;
   width: 35px;
+  color: blue;
 }
 .note-cell {
   height: 11px;
   width: 11px;
+  color: blue;
 }
 
 .btn-h {
