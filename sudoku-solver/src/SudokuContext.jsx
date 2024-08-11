@@ -4,7 +4,7 @@ import { getPuzzle, emptyNotes } from './components/functions.jsx';
 const SudokuContext = createContext(null);
 
 const boardReducer = (state, action) => {
-    let newState, g, i, j, value;
+    var newState, g, i, j, value;
     action.payload && ({g, i, j, value} = action.payload);
     switch(action.type) {
         case 'RESET_BOARD':
@@ -24,11 +24,11 @@ const boardReducer = (state, action) => {
 
 
 export function SudokuProvider({children}) {
-    const [board, boardActions] = useReducer(boardReducer, getPuzzle());
-    const [notes, noteActions] = useReducer(boardReducer, emptyNotes());
+    const [board, boardActions] = useReducer(boardReducer, null,getPuzzle);
+    const [notes, noteActions] = useReducer(boardReducer, null,emptyNotes);
     const [selected, setSelected] = useState(null);
     const [takingNotes, setTakingNotes] = useState(false);
-    const [puzzle, setPuzzle] = useState(getPuzzle());
+    const [puzzle, setPuzzle] = useState(() => getPuzzle());
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: getPuzzle()});

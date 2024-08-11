@@ -19,10 +19,11 @@ const getPuzzle = () => {
 }
 
 const emptyNotes = () => {
-    return Array(9)
-        .fill(Array(3)
-            .fill(Array(3)
-                    .fill(Array(9).fill(false))));
+    return new Array(9).fill()
+        .map(() => (Array(3).fill()
+            .map(() => (Array(3).fill()
+                .map(() => (Array(9).fill()
+                    .map(() => (false))))))))
 
 }
 
