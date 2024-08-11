@@ -11,7 +11,11 @@ export default function Cell({value, coor, shouldStop = false}) {
             //setSelected({...coor});
             return;
         } */
-        if (puzzle[g][i] && puzzle[g][i][j] !== 0) return;
+        if (puzzle[g][i][j] !== 0) return;
+        if (JSON.stringify(selected) === JSON.stringify(coor)) {
+            setSelected(null);
+            return;
+        }
         setSelected({...coor});
     }
     
@@ -23,7 +27,7 @@ export default function Cell({value, coor, shouldStop = false}) {
     //const noteClass = isNote ? ' note-cell ' : false;
     const baseClass = `${n ? ' note-cell ' : 'cell '} d-flex flex-wrap p-0 border border-black align-content-center justify-content-center`;
     const puzzleClass = isPuzzle ? ' fs-1 text-dark-emphasis fw-bold ' : ` cursor-pointer fs-${n ? 4 : 2} `;
-    const selectedClass = isSelected ? ` bg-${isNoteTrue ? "dark-subtle" : "dark"} opacity-${n ? 50 : 25} `:` bg-white bg-opacity-${50} `;
+    const selectedClass = isSelected ? ` bg-${isNoteTrue ? "dark" : "dark-subtle"} ${n && "bg-"}opacity-${n ? 50 : 25} `:` bg-white bg-opacity-${50} `;
 
     return (
         <div className={baseClass + puzzleClass + ' ' + selectedClass}

@@ -2,7 +2,7 @@ import React, { useContext} from 'react';
 import SudokuContext from '../SudokuContext.jsx';
 
 export default function Guides() {
-    const { notes, board} = useContext(SudokuContext);
+    const { notes, selected, board} = useContext(SudokuContext);
 
     const showRelations = () => {
         console.log('showing relations');
