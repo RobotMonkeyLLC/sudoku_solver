@@ -42,7 +42,7 @@
 }
 
 .cell {
-  height: 35px;
+  height:35px;
   width: 35px;
   color: blue;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -55,9 +55,10 @@
 }
 
 .note-cell {
-  height: 11px;
-  width: 11px;
+  height: 10px;
+  width: 10px;
   color: lightblue;
+  font-size: 10px;
 }
 
 .btn-h {
