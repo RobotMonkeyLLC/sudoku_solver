@@ -19,6 +19,8 @@ const boardReducer = (state, action) => {
             newState = structuredClone(state);
             newState[g][i][j][value-1] = !(state[g][i][j][value-1]);
             return newState;
+        case 'RESET_NOTES':
+            return emptyNotes();
     }
 }
 

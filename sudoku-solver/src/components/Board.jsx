@@ -7,7 +7,7 @@ export default function Board() {
 
     return (
         
-        <div id='board' className="bg-light row d-flex flex-wrap justify-content-center col-md-12 col-lg-8">
+        <div id='board' className="bg-light row d-flex flex-wrap justify-content-around col-md-12 col-lg-8">
             {
                 board.map((group, g) => (
                     <div key={g} className="col-4 d-flex flex-wrap justify-content-center px-0 my-1">

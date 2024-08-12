@@ -4,7 +4,19 @@ import { useContext } from 'react';
 import SudokuContext from '../SudokuContext.jsx';
 
 export default function Header() {
-    const { takingNotes, setTakingNotes, boardActions} = useContext(SudokuContext);
+    const { takingNotes, setTakingNotes, noteActions,boardActions} = useContext(SudokuContext);
+
+    const handleReset = () => {
+        switch(takingNotes) {
+            case true:
+                noteActions({type: 'RESET_NOTES'});
+                return;
+            case false:
+                boardActions({type: 'RESET_BOARD'});
+                return;
+            
+        }
+    }
 
     return (
         <header className="col-12">
@@ -17,8 +29,9 @@ export default function Header() {
                 
                 <button className={`btn btn-h ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-pencil`}
                 onClick={() => setTakingNotes(!takingNotes)}></button>
-                <button className="btn btn-h btn-secondary bi bi-arrow-repeat"
-                onClick={()=> boardActions({type:'RESET_BOARD'})}></button>
+                
+                <button className={`btn btn-h ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-arrow-repeat`}
+                onClick={()=> handleReset()}></button>
             </div>
         </header>
     )

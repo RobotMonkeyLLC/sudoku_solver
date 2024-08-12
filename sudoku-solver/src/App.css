@@ -42,8 +42,8 @@
 }
 
 .cell {
-  height:35px;
-  width: 35px;
+  height:4vh;
+  width: 4vh;
   color: blue;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -55,10 +55,10 @@
 }
 
 .note-cell {
-  height: 10px;
-  width: 10px;
+  height: 1.25vh;
+  width: 1.25vh;
   color: lightblue;
-  font-size: 10px;
+  font-size: 1.2vh;
 }
 
 .btn-h {
@@ -67,11 +67,12 @@
 }
 @media screen and (min-width: 768px) {
   .cell {
-    height: 80px;
-    width: 80px;
+    height: 10vh;
+    width: 10vh;
   }
   .note-cell {
-    height: 25px;
-    width: 25px;
+    height: 3vh;
+    width: 3vh;
+    font-size: 3vh;
   }
 }
