@@ -21,7 +21,7 @@ export default function Cell({value, coor, shouldStop = false}) {
     
     const isPuzzle = !n && (puzzle[g][i][j] !== 0); // needs rework
     //const isNote = n;
-    const isNoteTrue = n && notes[g][i][j][value-1];
+    const isNoteTrue = takingNotes && notes[g][i][j][value-1];
     const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
     //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
     //const noteClass = isNote ? ' note-cell ' : false;

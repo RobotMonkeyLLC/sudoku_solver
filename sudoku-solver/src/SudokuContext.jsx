@@ -33,8 +33,8 @@ export function SudokuProvider({children}) {
     const [puzzle, setPuzzle] = useState(() => getPuzzle());
 
     useEffect(() => {
-        boardActions({type: 'SET_BOARD', payload: getPuzzle()});
-        noteActions({type: 'SET_BOARD', payload: emptyNotes()});
+        //boardActions({type: 'SET_BOARD', payload: getPuzzle()});
+        //noteActions({type: 'SET_BOARD', payload: emptyNotes()});
     }, []);
 
     return (

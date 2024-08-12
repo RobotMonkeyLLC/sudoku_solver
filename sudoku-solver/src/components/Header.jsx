@@ -26,12 +26,18 @@ export default function Header() {
                     <h1 className='col-12'>Sudoku Solver</h1>
                     <Guides></Guides>
                 </div>
+                <div className='d-flex justify-content-between'>
+                    <button className={`btn btn-h ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-pencil`}
+                    onClick={() => setTakingNotes(!takingNotes)}></button>
+                    
+                    <div className='btn-group' role="group">
+                        <button className={`btn btn-secondary bi bi-arrow-counterclockwise`}></button>
+                        <button className={`btn btn ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-arrow-repeat`}
+                        onClick={()=> handleReset()}></button>
+                        <button className={`btn btn-secondary bi bi-arrow-clockwise`}></button>
+                    </div>
+                </div>
                 
-                <button className={`btn btn-h ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-pencil`}
-                onClick={() => setTakingNotes(!takingNotes)}></button>
-                
-                <button className={`btn btn-h ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-arrow-repeat`}
-                onClick={()=> handleReset()}></button>
             </div>
         </header>
     )
