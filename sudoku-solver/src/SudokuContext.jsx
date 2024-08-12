@@ -10,7 +10,10 @@ const boardReducer = (state, action) => {
         case 'RESET_BOARD':
             return getPuzzle();
         case 'SET_BOARD':
-            return action.payload;
+            return {
+                history: [],
+                board: action.payload,
+            };
         case 'UPDATE_BOARD':
             newState = structuredClone(state);
             newState[g][i][j] = value;
@@ -33,8 +36,8 @@ export function SudokuProvider({children}) {
     const [puzzle, setPuzzle] = useState(() => getPuzzle());
 
     useEffect(() => {
-        //boardActions({type: 'SET_BOARD', payload: getPuzzle()});
-        //noteActions({type: 'SET_BOARD', payload: emptyNotes()});
+        boardActions({type: 'SET_BOARD', payload: getPuzzle()});
+        noteActions({type: 'SET_BOARD', payload: emptyNotes()});
     }, []);
 
     return (
