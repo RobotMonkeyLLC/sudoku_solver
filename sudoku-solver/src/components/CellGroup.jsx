@@ -1,6 +1,7 @@
+import React, { memo } from "react";
 import Cell from "../components/Cell.jsx";
 
-export default function CellGroup({group, g, shouldStop = false}) {
+function CellGroup({group, g, shouldStop = false}) {
     return (
         
             group.map((x, i) => (
@@ -15,3 +16,4 @@ export default function CellGroup({group, g, shouldStop = false}) {
         
     )
 }
+export default memo(CellGroup);

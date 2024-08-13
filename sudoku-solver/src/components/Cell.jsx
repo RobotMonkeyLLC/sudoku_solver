@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { memo,useContext } from "react";
 import SudokuContext from '../SudokuContext.jsx';
 import CellGroup from "./CellGroup.jsx";
 
-export default function Cell({value, coor, shouldStop = false}) {
+function Cell({value, coor, shouldStop = false}) {
     const { takingNotes, notes, puzzle, selected, setSelected } = useContext(SudokuContext);
     const {g, i, j, n} = coor;
 
@@ -39,3 +39,5 @@ export default function Cell({value, coor, shouldStop = false}) {
         </div>
     )
 }
+
+export default memo(Cell);
