@@ -11,11 +11,13 @@ const boardReducer = (state, action) => {
             return {
                 history: [],
                 board: getPuzzle(),
+                future: [],
             };
         case 'SET_BOARD':
             return {
                 history: [],
                 board: action.payload,
+                future: [],
             };
         case 'UPDATE_BOARD':
             newState = structuredClone(state.board);
@@ -23,6 +25,21 @@ const boardReducer = (state, action) => {
             return {
                 history: [...state.history, state.board],
                 board: newState,
+                future: [],
+            };
+        case 'UNDO':
+            if (state.history.length === 0) return state;
+            return {
+                history: state.history.slice(0, -1),
+                board: state.history[state.history.length - 1],
+                future: [...state.future, state.board],
+            };
+        case 'REDO':
+            if (state.future.length === 0) return state
+            return {
+                history: [...state.history, state.board],
+                board: state.future[state.future.length - 1],
+                future: state.future.slice(0, -1)
             };
         case 'UPDATE_NOTE':
             newState = structuredClone(state);

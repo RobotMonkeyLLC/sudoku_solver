@@ -31,10 +31,12 @@ export default function Header() {
                     onClick={() => setTakingNotes(!takingNotes)}></button>
                     
                     <div className='btn-group' role="group">
-                        <button className={`btn btn-secondary bi bi-arrow-counterclockwise`}></button>
+                        <button className={`btn btn-secondary bi bi-arrow-counterclockwise`}
+                        onClick={() => boardActions({type: 'UNDO'})}></button>
                         <button className={`btn btn ${takingNotes ? 'btn-outline border-dark':'btn-secondary'} bi bi-arrow-repeat`}
                         onClick={()=> handleReset()}></button>
-                        <button className={`btn btn-secondary bi bi-arrow-clockwise`}></button>
+                        <button className={`btn btn-secondary bi bi-arrow-clockwise`}
+                        onClick={() => boardActions({type: 'REDO'})}></button>
                     </div>
                 </div>
                 
