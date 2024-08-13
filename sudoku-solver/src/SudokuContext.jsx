@@ -8,28 +8,43 @@ const boardReducer = (state, action) => {
     action.payload && ({g, i, j, value} = action.payload);
     switch(action.type) {
         case 'RESET_BOARD':
-            return getPuzzle();
+            return {
+                history: [],
+                board: getPuzzle(),
+            };
         case 'SET_BOARD':
             return {
                 history: [],
                 board: action.payload,
             };
         case 'UPDATE_BOARD':
-            newState = structuredClone(state);
+            newState = structuredClone(state.board);
             newState[g][i][j] = value;
-            return newState;
+            return {
+                history: [...state.history, state.board],
+                board: newState,
+            };
         case 'UPDATE_NOTE':
             newState = structuredClone(state);
             newState[g][i][j][value-1] = !(state[g][i][j][value-1]);
             return newState;
         case 'RESET_NOTES':
             return emptyNotes();
+        case 'SET_NOTES':
+            return action.payload;
     }
 }
 
+const newBoard = () => {
+    return {
+        history: [],
+        board: getPuzzle(),
+    };
+
+}
 
 export function SudokuProvider({children}) {
-    const [board, boardActions] = useReducer(boardReducer, null,getPuzzle);
+    const [board, boardActions] = useReducer(boardReducer, null,newBoard);
     const [notes, noteActions] = useReducer(boardReducer, null,emptyNotes);
     const [selected, setSelected] = useState(null);
     const [takingNotes, setTakingNotes] = useState(false);
@@ -37,7 +52,7 @@ export function SudokuProvider({children}) {
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: getPuzzle()});
-        noteActions({type: 'SET_BOARD', payload: emptyNotes()});
+        noteActions({type: 'SET_NOTES', payload: emptyNotes()});
     }, []);
 
     return (
