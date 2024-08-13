@@ -14,7 +14,6 @@ export default function Header() {
             case false:
                 boardActions({type: 'RESET_BOARD'});
                 return;
-            
         }
     }
 
