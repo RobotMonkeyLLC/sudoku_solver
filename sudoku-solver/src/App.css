@@ -42,8 +42,8 @@
 }
 
 .cell {
-  height:4vh;
-  width: 4vh;
+  height:33px;
+  width: 33px;
   color: blue;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -55,24 +55,24 @@
 }
 
 .note-cell {
-  height: 1.25vh;
-  width: 1.25vh;
+  height: 10px;
+  width: 10px;
   color: lightblue;
-  font-size: 1.2vh;
+  font-size: 10px;
 }
 
 .btn-h {
-  height: 3.15rem;
-  width: 3.15rem;
+  height: 50px;
+  width: 50px;
 }
 @media screen and (min-width: 768px) {
   .cell {
-    height: 10vh;
-    width: 10vh;
+    height: 87px;
+    width: 87px;
   }
   .note-cell {
-    height: 3vh;
-    width: 3vh;
-    font-size: 3vh;
+    height: 26px;
+    width: 26px;
+    font-size: 26px;
   }
 }
