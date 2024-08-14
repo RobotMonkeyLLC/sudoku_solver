@@ -2,16 +2,28 @@ import { memo,useContext } from "react";
 import SudokuContext from '../SudokuContext.jsx';
 import CellGroup from "./CellGroup.jsx";
 
-function Cell({value, coor, shouldStop = false}) {
-    const { takingNotes, notes, puzzle, selected, setSelected } = useContext(SudokuContext);
-    const {g, i, j, n} = coor;
+const useSelected = () => {
+        const { selected } = useContext(SudokuContext);
+        return selected;
+    };
+    
+const usePuzzleCell = (g, i, j) => {
+    const { puzzle } = useContext(SudokuContext);
+    return puzzle[g][i][j];
+};
 
+function Cell({value, coor, shouldStop = false}) {
+    const { takingNotes, notes, setSelected } = useContext(SudokuContext);
+    const selected = useSelected();
+    const puzzle = usePuzzleCell(coor.g, coor.i, coor.j);
+    const {g, i, j, n} = coor;
+    
     const handleClick = () => {
       /*   if (takingNotes) {
             //setSelected({...coor});
             return;
         } */
-        if (puzzle[g][i][j] !== 0) return;
+        if (puzzle !== 0) return;
         if (JSON.stringify(selected) === JSON.stringify(coor)) {
             setSelected(null);
             return;
@@ -19,7 +31,7 @@ function Cell({value, coor, shouldStop = false}) {
         setSelected({...coor});
     }
     
-    const isPuzzle = !n && (puzzle[g][i][j] !== 0); // needs rework
+    const isPuzzle = !n && (puzzle !== 0); // needs rework
     //const isNote = n;
     const isNoteTrue = takingNotes && notes[g][i][j][value-1];
     const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
