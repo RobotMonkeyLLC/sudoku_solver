@@ -1,3 +1,20 @@
+const checkRow = (grid, row, num) => {
+
+}
+
+const checkCol = (grid, col, num) => {
+
+}
+
+const checkSquare = (grid, row, col, num) => {
+
+}
+
+const isValid = (grid, row, col, num) => {
+
+}
+
+
 const getPuzzle = () => {
     /* const response = await fetch('');
     const data = await response.json();

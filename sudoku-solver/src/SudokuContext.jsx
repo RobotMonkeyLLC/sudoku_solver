@@ -2,6 +2,7 @@ import { createContext, useReducer, useEffect, useState } from 'react';
 import { getPuzzle, emptyNotes } from './components/functions.jsx';
 
 const SudokuContext = createContext(null);
+export const NotesContext = createContext(null);
 
 const boardReducer = (state, action) => {
     var newState, g, i, j, value;
@@ -60,24 +61,42 @@ const newBoard = () => {
 
 }
 
+export function NotesProvier({children}) {
+    const [notes, noteActions] = useReducer(boardReducer, null,emptyNotes);
+    const [takingNotes, setTakingNotes] = useState(false);
+    
+    useEffect(() => {
+        noteActions({type: 'SET_NOTES', payload: emptyNotes()});
+    }, []);
+    return (
+        <NotesContext.Provider value={{notes, noteActions,
+                                        takingNotes, setTakingNotes
+                                        }}>
+            {children}
+        </NotesContext.Provider>
+    )
+
+}
+
 export function SudokuProvider({children}) {
     const [board, boardActions] = useReducer(boardReducer, null,newBoard);
-    const [notes, noteActions] = useReducer(boardReducer, null,emptyNotes);
+    //const [notes, noteActions] = useReducer(boardReducer, null,emptyNotes);
     const [selected, setSelected] = useState(null);
-    const [takingNotes, setTakingNotes] = useState(false);
+    //const [takingNotes, setTakingNotes] = useState(false);
     const [puzzle, setPuzzle] = useState(() => getPuzzle());
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: getPuzzle()});
-        noteActions({type: 'SET_NOTES', payload: emptyNotes()});
+        //noteActions({type: 'SET_NOTES', payload: emptyNotes()});
     }, []);
 
     return (
         <SudokuContext.Provider value={{puzzle, setPuzzle ,
                                         selected, setSelected, 
                                         board, boardActions,
-                                        notes, noteActions,
-                                        takingNotes, setTakingNotes}}>
+                                        //notes, noteActions,
+                                        //takingNotes, setTakingNotes
+                                        }}>
             {children}
         </SudokuContext.Provider>
         )

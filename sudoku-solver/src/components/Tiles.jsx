@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import SudokuContext from '../SudokuContext.jsx';
+import SudokuContext, { NotesContext } from '../SudokuContext.jsx';
 
 const useSelected = () => {
     const { selected } = useContext(SudokuContext);
@@ -7,7 +7,8 @@ const useSelected = () => {
 };
 
 export default function Tiles() {
-    const { notes, takingNotes, setTakingNotes, noteActions, setSelected, boardActions } = useContext(SudokuContext);
+    const { setSelected, boardActions } = useContext(SudokuContext);
+    const { notes, takingNotes, setTakingNotes, noteActions } = useContext(NotesContext);
     const selected = useSelected();
     const handleClick = (num) => {
         if (selected === null) return;

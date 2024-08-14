@@ -1,10 +1,11 @@
 import React from 'react';
 import Guides from './Guides.jsx';
 import { useContext } from 'react';
-import SudokuContext from '../SudokuContext.jsx';
+import SudokuContext, { NotesContext } from '../SudokuContext.jsx';
 
 export default function Header() {
-    const { takingNotes, setTakingNotes, noteActions,boardActions} = useContext(SudokuContext);
+    const { boardActions} = useContext(SudokuContext);
+    const { takingNotes, setTakingNotes, noteActions, } = useContext(NotesContext);
 
     const handleReset = () => {
         switch(takingNotes) {
