@@ -7,13 +7,30 @@ const checkCol = (grid, col, num) => {
 }
 
 const checkSquare = (grid, row, col, num) => {
-
+    
 }
 
 const isValid = (grid, row, col, num) => {
-
+    return checkRow(grid, row, num) && 
+        checkCol(grid, col, num) && 
+        checkSquare(grid, row, col, num);
 }
 
+const checkBoard = (grid) => {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (grid[i][j] !== 0) {
+                if (!isValid(grid, i, j, grid[i][j])) {
+                    grid[i][j] = false;
+                } else {
+                    grid[i][j] = true;
+                }
+                
+            }
+        }
+    }
+    return grid;
+}
 
 const getPuzzle = () => {
     const newboard = {
@@ -46,4 +63,4 @@ const toggleClass = (cls, remove, add) => {
         cell.classList.replace(remove, add);
     });
 }
-export { getPuzzle, toggleClass, emptyNotes };
+export { getPuzzle, toggleClass, emptyNotes, checkBoard };

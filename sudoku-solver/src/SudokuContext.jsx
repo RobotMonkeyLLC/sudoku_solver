@@ -1,5 +1,5 @@
 import { createContext, useReducer, useEffect, useState } from 'react';
-import { getPuzzle, emptyNotes } from './components/functions.jsx';
+import { getPuzzle, emptyNotes, checkBoard } from './components/functions.jsx';
 
 const SudokuContext = createContext(null);
 export const NotesContext = createContext(null);
@@ -51,6 +51,8 @@ const boardReducer = (state, action) => {
             return emptyNotes();
         case 'SET_NOTES':
             return action.payload;
+        case 'CHECK_BOARD':
+            return checkBoard(action.payload);
     }
 }
 
@@ -60,6 +62,18 @@ const newBoard = () => {
         board: getPuzzle(),
     };
 
+}
+
+export function CheckProvider({children}) {
+    const [status, checkActions] = useReducer(boardReducer, null, newBoard);
+    const [checking, setChecking] = useState(false);
+
+    return (
+        <CheckContext.Provider value={{status, checkActions,
+                                        checking, setChecking}}>
+            {children}
+        </CheckContext.Provider>
+    )
 }
 
 export function NotesProvier({children}) {

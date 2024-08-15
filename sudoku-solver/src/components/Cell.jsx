@@ -1,5 +1,5 @@
 import { memo,useContext } from "react";
-import SudokuContext, { NotesContext } from '../SudokuContext.jsx';
+import SudokuContext, { NotesContext, CheckContext } from '../SudokuContext.jsx';
 import CellGroup from "./CellGroup.jsx";
 
 const useSelected = () => {
@@ -15,6 +15,8 @@ const usePuzzleCell = (g, i, j) => {
 function Cell({value, coor, shouldStop = false}) {
     const { setSelected } = useContext(SudokuContext);
     const { takingNotes, notes } = useContext(NotesContext);
+    const { checking, status } = useContext(CheckContext);
+
     const selected = useSelected();
     const puzzle = usePuzzleCell(coor.g, coor.i, coor.j);
     const {g, i, j, n} = coor;
