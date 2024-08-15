@@ -3,6 +3,7 @@ import { getPuzzle, emptyNotes } from './components/functions.jsx';
 
 const SudokuContext = createContext(null);
 export const NotesContext = createContext(null);
+export const CheckContext = createContext(null);
 
 const boardReducer = (state, action) => {
     var newState, g, i, j, value;
