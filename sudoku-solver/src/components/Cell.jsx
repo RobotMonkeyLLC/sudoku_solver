@@ -20,10 +20,6 @@ function Cell({value, coor, shouldStop = false}) {
     const {g, i, j, n} = coor;
     
     const handleClick = () => {
-      /*   if (takingNotes) {
-            //setSelected({...coor});
-            return;
-        } */
         if (puzzle !== 0) return;
         if (JSON.stringify(selected) === JSON.stringify(coor)) {
             setSelected(null);
@@ -33,11 +29,8 @@ function Cell({value, coor, shouldStop = false}) {
     }
     
     const isPuzzle = !n && (puzzle !== 0); // needs rework
-    //const isNote = n;
     const isNoteTrue = takingNotes && notes[g][i][j][value-1];
     const isSelected = selected && selected.g === g && selected.i === i && selected.j === j;
-    //const puzzleClass = (puzzle[g][i][j] === 0 ? 'cursor-pointer fs-2' : 'fs-1 text-dark-emphasis fw-bold');
-    //const noteClass = isNote ? ' note-cell ' : false;
     const baseClass = `${n ? ' note-cell ' : 'cell '} d-flex flex-wrap p-0 border border-black align-content-center justify-content-center`;
     const puzzleClass = isPuzzle ? ' fs-1 text-dark-emphasis fw-bold ' : ` cursor-pointer ${n ? null : 'fs-2'} `;
     const selectedClass = isSelected ? ` bg-${isNoteTrue ? "dark" : "dark-subtle"} ${n && "bg-"}opacity-${n ? 50 : 25} `:` bg-white bg-opacity-${50} `;

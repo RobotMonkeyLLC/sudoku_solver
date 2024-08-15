@@ -80,22 +80,17 @@ export function NotesProvier({children}) {
 
 export function SudokuProvider({children}) {
     const [board, boardActions] = useReducer(boardReducer, null,newBoard);
-    //const [notes, noteActions] = useReducer(boardReducer, null,emptyNotes);
     const [selected, setSelected] = useState(null);
-    //const [takingNotes, setTakingNotes] = useState(false);
     const [puzzle, setPuzzle] = useState(() => getPuzzle());
 
     useEffect(() => {
         boardActions({type: 'SET_BOARD', payload: getPuzzle()});
-        //noteActions({type: 'SET_NOTES', payload: emptyNotes()});
     }, []);
 
     return (
         <SudokuContext.Provider value={{puzzle, setPuzzle ,
                                         selected, setSelected, 
                                         board, boardActions,
-                                        //notes, noteActions,
-                                        //takingNotes, setTakingNotes
                                         }}>
             {children}
         </SudokuContext.Provider>

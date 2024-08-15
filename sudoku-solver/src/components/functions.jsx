@@ -16,9 +16,6 @@ const isValid = (grid, row, col, num) => {
 
 
 const getPuzzle = () => {
-    /* const response = await fetch('');
-    const data = await response.json();
-    return data.newboard.grids; */
     const newboard = {
         "grids": [
             [[0,0,0],[0,0,7],[0,0,0]],
