@@ -4,15 +4,15 @@ import SudokuContext, { NotesContext, CheckContext } from '../SudokuContext.jsx'
 export default function Guides() {
     const { selected, board} = useContext(SudokuContext);
     const { notes } = useContext(NotesContext);
-    const { checking ,setChecking, checkActions } = useContext(CheckContext);
+    const { check, checking ,setChecking, checkActions } = useContext(CheckContext);
 
     const showRelations = () => {
         console.log('showing relations');
     };
-    const check = () => {
+    const showCheck = () => {
         checkActions({type: 'CHECK_BOARD', payload: board.board});
         setChecking(checking ? false : true);
-        console.log('checking');
+        console.log('checking', check);
     };
     const showNotes = () => {
         console.log(notes);
@@ -27,7 +27,7 @@ export default function Guides() {
             onClick={() => showRelations()}>
                 Show relations</button>
             <button className="btn btn-secondary border"
-            onClick={() => check()}>
+            onClick={() => showCheck()}>
                 Check</button>
             <button className="btn btn-secondary border"
             onClick={() => showNotes()}>

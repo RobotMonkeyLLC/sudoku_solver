@@ -65,15 +65,21 @@ const newBoard = () => {
 }
 
 export function CheckProvider({children}) {
-    const [status, checkActions] = useReducer(boardReducer, null, newBoard);
-    const [checking, setChecking] = useState(false);
+    const [check, checkActions] = useReducer(boardReducer, null, newBoard);
+    const [checking, setChecking] = useState(false);   
 
+    useEffect(() => {
+        checkActions({type: 'SET_BOARD', payload: getPuzzle()});
+        
+    }, []);
     return (
-        <CheckContext.Provider value={{status, checkActions,
-                                        checking, setChecking}}>
+        <CheckContext.Provider value={{check, checkActions,
+                                        checking, setChecking
+        }}>
             {children}
         </CheckContext.Provider>
     )
+
 }
 
 export function NotesProvier({children}) {
